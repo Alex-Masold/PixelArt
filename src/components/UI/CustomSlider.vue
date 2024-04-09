@@ -7,7 +7,7 @@
             v-model="modelValue" 
             min="1"
             max="35">
-        <span for="input-range"> {{ modelValue }}</span>
+        <span for="input-range"> {{ modelValue <= 9 ? `0${modelValue}` : modelValue }}</span>
     </div>
 </template>
 

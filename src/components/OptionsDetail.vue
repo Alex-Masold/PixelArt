@@ -1,15 +1,13 @@
 <template>
-    <div class="wrapper">
+    <div class="options-detail">
         <slot></slot>
     </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
-    .wrapper{
+.options-detail {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
