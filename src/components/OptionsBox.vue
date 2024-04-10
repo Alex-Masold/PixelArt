@@ -6,17 +6,17 @@
         </OptionsDetail>
 
         <OptionsDetail>
-            <CustomButton>Create Grid</CustomButton>
+            <CustomButton @click="createGrid">Create Grid</CustomButton>
             <CustomButton>Clear Grid</CustomButton>
-            <CustomColorInput v-model="colorString" />
-            <CustomButton>Earase</CustomButton>
-            <CustomButton>Paint</CustomButton>
+            <CustomColorInput @update:model-value="colorChange" v-model="colorString" />
+            <VSwitch color="primary" label="paint"></VSwitch>
         </OptionsDetail>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { VSwitch } from 'vuetify/components';
 import OptionsDetail from './OptionsDetail.vue';
 import CustomSlider from './UI/CustomSlider.vue';
 import CustomButton from './UI/CustomButton.vue';
@@ -26,16 +26,22 @@ const gridWidth = ref(0);
 const gridHeight = ref(0);
 
 const colorString = ref('#000000');
+
+const emit = defineEmits(['createGrid', 'clearGrid', 'colorChange', 'paint']);
+
+function createGrid() {
+    emit('createGrid', gridWidth.value, gridHeight.value);
+}
+
+function colorChange() {
+    emit('colorChange', colorString.value);
+}
 </script>
 
 <style scoped>
 .options-box {
     background-color: #333;
     width: 100vh;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 20%;
-    left: 50%;
     padding: 2em;
     border-radius: 1em;
 }

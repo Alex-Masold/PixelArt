@@ -10,7 +10,7 @@
 .options-detail {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center;
     gap: 10px;
 }
 </style>
