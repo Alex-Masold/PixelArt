@@ -17,6 +17,8 @@ import GridRow from '@/components/GridRow.vue';
 import OptionsBox from '@/components/OptionsBox.vue';
 import { ref } from 'vue';
 
+const isPaint = ref<boolean>(true);
+
 const gridRows = ref<gridRow[]>([]);
 
 const colorString = ref<string>('#000000');

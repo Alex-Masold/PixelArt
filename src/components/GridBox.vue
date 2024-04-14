@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import GridRow from './GridRow.vue';
+import type { gridRow } from '@/models/GridRow';
 
 const props = defineProps({
     rowLength: Number,
@@ -16,18 +17,7 @@ const props = defineProps({
     colorString: String
 });
 
-class gridRowClass {
-    id: number;
-    length: number | undefined;
-    // надо ли сдесь добавлять массив gridCol (связывание)
-
-    constructor(id: number, length: number) {
-        this.id = id;
-        this.length = length;
-    }
-};
-
-const gridRows = ref<gridRowClass[]>([]);
+const gridRows = ref<gridRow[]>([]);
 
 watch(props.rowLength, () => {
     for (let index = 0; index < props.rowLength; index++) {
