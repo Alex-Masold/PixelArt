@@ -7,7 +7,7 @@
 
         <OptionsDetail>
             <CustomButton @click="createGrid">Create Grid</CustomButton>
-            <CustomButton>Clear Grid</CustomButton>
+            <CustomButton @click="clearGrid">Clear Grid</CustomButton>
             <CustomColorInput @update:model-value="colorChange" v-model="colorString" />
             <VSwitch color="primary" label="paint" v-model="modelValue"></VSwitch>
         </OptionsDetail>
@@ -29,14 +29,18 @@ const colorString = ref('#000000');
 
 const modelValue = defineModel<boolean>();
 
-const emit = defineEmits(['createGrid', 'clearGrid', 'colorChange', 'paint']);
+const emit = defineEmits(['create-grid', 'clear-grid', 'color-change', 'paint']);
 
 function createGrid() {
-    emit('createGrid', gridWidth.value, gridHeight.value);
+    emit('create-grid', gridWidth.value, gridHeight.value);
 }
 
 function colorChange() {
-    emit('colorChange', colorString.value);
+    emit('color-change', colorString.value);
+}
+
+function clearGrid() {
+    emit('clear-grid');
 }
 </script>
 

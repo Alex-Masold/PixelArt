@@ -18,11 +18,11 @@ const props = defineProps({
 });
 
 const gridRows = ref<gridRow[]>([]);
-
-watch(props.rowLength, () => {
-    for (let index = 0; index < props.rowLength; index++) {
-        gridRows.value.push(new gridRowClass(index, props.colLength));
-    };
+// при изменении grid gridCols не обновляются
+// watch(props.rowLength, () => {
+//     for (let index = 0; index < props.rowLength; index++) {
+//         gridRows.value.push(new gridRowClass(index, props.colLength));
+//     };
 });
 </script>
 

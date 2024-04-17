@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <OptionsBox @create-grid="createGrid" @color-change="colorChange" />
+        <OptionsBox @create-grid="createGrid" @color-change="colorChange" @clear-grid="clearGrid"/>
 
         <div class="grid-box">
             <GridRow
@@ -15,13 +15,21 @@
 <script setup lang="ts">
 import GridRow from '@/components/GridRow.vue';
 import OptionsBox from '@/components/OptionsBox.vue';
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
+
+const isDraw = ref<boolean>(false);
+
+provide('isDraw', { isDraw, isDrawSwitch });
+
+function isDrawSwitch() {
+    isDraw.value = !isDraw.value;
+}
 
 const isPaint = ref<boolean>(true);
 
 const gridRows = ref<gridRow[]>([]);
 
-const colorString = ref<string>('#000000');
+const colorString = ref<string>('#ffffff');
 
 class gridCol {
     id: number;
@@ -45,7 +53,7 @@ class gridRow {
 }
 
 function createGrid(_rowLength: number, _colLength: number) {
-    gridRows.value = [];
+    clearGrid()
     for (let index = 0; index < _rowLength; index++) {
         gridRows.value.push(new gridRow(index, _colLength));
     }
@@ -53,6 +61,10 @@ function createGrid(_rowLength: number, _colLength: number) {
 
 function colorChange(_colorString: string) {
     colorString.value = _colorString;
+}
+
+function clearGrid() {
+    gridRows.value = [];
 }
 </script>
 
